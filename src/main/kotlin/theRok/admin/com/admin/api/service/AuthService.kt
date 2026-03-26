@@ -14,7 +14,6 @@ import theRok.admin.com.admin.api.dto.AuthSignInRequest
 import theRok.admin.com.admin.api.dto.AuthSignInResponse
 import theRok.admin.com.admin.exception.UserNotFoundException
 import theRok.admin.com.admin.exception.InvalidPasswordException
-import theRok.admin.com.admin.provider.JwtTokenProvider
 import theRok.admin.com.admin.security.UserPermissionProvider
 import io.github.oshai.kotlinlogging.KotlinLogging
 import java.util.UUID
@@ -28,7 +27,6 @@ class AuthService(
     private val consoleUserRepository: ConsoleUserRepository,
     private val messageSource: MessageSource,
     private val passwordEncoder: PasswordEncoder,
-    private val jwtTokenProvider: JwtTokenProvider,
     private val userPermissionProvider: UserPermissionProvider,
     private val eventPublisher: ApplicationEventPublisher,
 ) {
