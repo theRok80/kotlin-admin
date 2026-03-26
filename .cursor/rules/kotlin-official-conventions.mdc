@@ -1,0 +1,18 @@
+---
+description: Kotlin 공식 코딩 컨벤션 (kotlinlang.org) 준수
+globs: **/*.{kt,kts}
+alwaysApply: false
+---
+
+# Kotlin 공식 스타일
+
+- 들여쓰기는 **스페이스 4칸**. 탭 사용 금지.
+- 세미콜론 생략. 불필요한 괄호·타입 추론 가능한 명시 타입 줄이기.
+- **가로 정렬**(여러 줄에 걸친 `=` 정렬 등)은 하지 않는다.
+- public API에는 KDoc을 쓰고, 구현 세부는 주석보다 이름·구조로 드러낸다.
+- **import**: 와일드카드 대신 명시적 import. (IDE/ktlint와 `.editorconfig`의 star import 임계값 참고)
+- **클래스/파일 레이아웃**: 관련 선언 순서는 공식 가이드(프로퍼티 → 초기화 블록 → 부 생성자 → 메서드 → companion 등)를 따른다.
+- **람다**: 마지막 인자가 람다면 괄호 밖으로 빼고, 여러 줄이면 닫는 괄호를 첫 줄 들여쓰기에 맞춘다.
+- **조건/When**: `if`/`when` 가지가 한 줄이면 중괄호 없이도 되지만, 가지 중 하나라도 중괄호를 쓰면 모두 중괄호로 통일한다.
+
+검증: `./gradlew ktlintCheck` · 자동 수정: `./gradlew ktlintFormat`. 상세 규칙은 [Coding conventions](https://kotlinlang.org/docs/coding-conventions.html)를 본문으로 삼는다.

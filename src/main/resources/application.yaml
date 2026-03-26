@@ -1,0 +1,43 @@
+spring:
+  application:
+    name: admin
+  datasource:
+    url: jdbc:mysql://localhost:3306/node-to-kotlin?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Seoul
+    username: root
+    password: Ehdqkdrnl57!
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+  output:
+    ansi:
+      enabled: always
+  redis:
+    host: localhost
+    port: 6379
+
+server:
+  forward-headers-strategy: framework
+
+# 점검 필터 경로 규칙 — Ant 스타일(/). servletPath 기준과 같게 쓰려면 선행 / 포함 (예: /api/**). context-path는 제거한 뒤 매칭.
+app:
+  jwt:
+    # HS256: UTF-8 기준 최소 32바이트. 운영에서는 환경 변수 등으로 교체
+    secret: "01234567890123456789012345678901"
+    access-token-expiration-minutes: 15
+    refresh-token-expiration-days: 7
+  slow-query:
+    # true: DataSource 프록시로 JDBC 실행 시간 측정, 조회 쿼리에 MySQL용 EXPLAIN 문 WARN 로그
+    enabled: true
+    # true: threshold-ms와 무관하게 매 조회마다 EXPLAIN 로그(매우 시끄러움). false: 임계 초과 시만.
+    force-explain: false
+    threshold-ms: 500
+  maintenance:
+    path-rules:
+      # 비어 있으면 모든 경로가 점검 대상(시간 구간 + exclude 적용). 값이 있으면 여기서 맞는 경로만 503 대상.
+      include-path-patterns: []
+      # 맞으면 점검 필터 스킵. include 보다 우선.
+      exclude-path-patterns: ["/health"]
+
+
